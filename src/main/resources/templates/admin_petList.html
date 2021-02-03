@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin_base::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+
+	<section>
+
+		<div class="card ">
+			<div class="card-body">
+				<div>
+					<h1 class="text-center  text-monospace">
+						Pet Information
+					</h1>
+				</div>
+				<form th:action="@{/assignStaff}">
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead class="thead-light">
+								<tr>
+
+									<th scope="col">Pet Id</th>
+									<th scope="col">User Name</th>
+									<th scope="col">Pet Name</th>
+									<th scope="col">Pet Type</th>
+									<th scope="col">Room Id</th>
+									<th scope="col">Action</th>
+
+
+								</tr>
+							</thead>
+
+							<tbody>
+
+
+								<tr th:each="c : ${pets}">
+									<th scope="row" th:text="${c.pet_id}">1</th>
+
+									<td>
+
+										<a th:text="${c.user.name}"></a>
+									</td>
+									<td>
+
+										<a th:text="${c.pet_name}"></a>
+									</td>
+									<td>
+
+										<a th:text="${c.pet_type}"></a>
+									</td>
+									<td>
+
+										<a th:text="${c.room.room_id}"></a>
+									</td>
+
+									<!-- <td >
+									<select type="dropdown" name="staff" id="staff">
+									
+											<option  th:each="s : ${staff}" th:text="${s.staff_name}"> </option>
+									</select>
+									
+									</td> -->
+
+									<td>
+										<a class="btn btn-sm btn-danger" th:href="@{'/delete/'+${c.pet_id}}">Delete</a>
+										<!-- <button class="btn btn-sm btn-warning">Assign</button> -->
+									</td>
+									<td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</form>
+				
+			</div>
+		</div>
+
+	</section>
+</body>
+
+</html>
